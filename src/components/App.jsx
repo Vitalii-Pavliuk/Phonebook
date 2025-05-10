@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import { ContactsPage } from "./pages/ContactsPage";
-import { RegisterPage } from "./pages/RegisterPage";
+import { SignupPage } from "./pages/SignupPage";
 import { LoginPage } from "./pages/LoginPage";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
@@ -23,7 +23,7 @@ function App() {
           path="/register"
           element={
             <PublicRoute>
-              <RegisterPage />
+              <SignupPage />
             </PublicRoute>
           }
         />
