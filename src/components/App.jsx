@@ -1,23 +1,41 @@
-import React from "react";
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import { ContactsPage } from "./pages/ContactsPage";
-import { SignupPage } from "./pages/SignupPage";
-import { LoginPage } from "./pages/LoginPage";
-import { PrivateRoute } from "./PrivateRoute";
-import { PublicRoute } from "./PublicRoute";
-import { UserMenu } from "./UserMenu/UserMenu";
-
-import style from "./App.module.css";
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCurrentUser } from '../redux/auth/authSlice';
+import { ContactsPage } from './pages/ContactsPage';
+import { SignupPage } from './pages/SignupPage';
+import { LoginPage } from './pages/LoginPage';
+import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
+import { UserMenu } from './UserMenu/UserMenu';
+import style from './App.module.css';
 
 function App() {
-  return (
+  const dispatch = useDispatch();
+  const { isRefreshing, isLoggedIn } = useSelector(state => state.auth);
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <div className={style.loader}>Loading...</div>
+  ) : (
     <BrowserRouter>
       <nav className={style.nav}>
-        <NavLink to="/register">Register</NavLink>
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/contacts">Contacts</NavLink>
-        <UserMenu />
+        {!isLoggedIn ? (
+          <>
+            <NavLink to="/register" className={style.link}>Register</NavLink>
+            <NavLink to="/login" className={style.link}>Login</NavLink>
+          </>
+        ) : (
+          <>
+            <NavLink to="/contacts" className={style.link}>Contacts</NavLink>
+            <UserMenu />
+          </>
+        )}
       </nav>
+      
       <Routes>
         <Route
           path="/register"
@@ -43,7 +61,9 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path="*" element={<LoginPage />} />
+        <Route path="*" element={
+          isLoggedIn ? <ContactsPage /> : <LoginPage />
+        } />
       </Routes>
     </BrowserRouter>
   );
