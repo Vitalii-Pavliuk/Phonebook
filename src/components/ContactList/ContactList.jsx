@@ -9,7 +9,7 @@ const ContactList = ({ contacts, onDelete }) => {
       {contacts.map((contact) => (
         <li className={style.contactItem} key={contact.id}>
           <span className={style.contactInfo}>
-            {contact.name}: {contact.phone}
+            {contact.name}: {contact.number}
           </span>
           <button
             className={style.deleteButton}

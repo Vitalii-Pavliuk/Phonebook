@@ -19,9 +19,7 @@ export const ContactsPage = () => {
 
   return (
     <div>
-      <h1>Phonebook</h1>
       <ContactForm />
-      <h2>Contacts</h2>
       <SearchContact
         value={filter}
         onFilterChange={(e) => dispatch(setFilter(e.target.value))}

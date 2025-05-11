@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
-// import style from './SignupForm.module.css';
+import style from './SignupForm.module.css';
 
 export const SignupForm = () => {
   const [name, setName] = useState('');
@@ -23,38 +23,47 @@ export const SignupForm = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
+    <div className={style.signupForm}>
+      <h2 className={style.formTitle}>Register</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Register</button>
-        {error && <p>{error}</p>}
+        <div className={style.formGroup}>
+          <label className={style.label}>
+            Name:
+            <input
+              className={style.input}
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div className={style.formGroup}>
+          <label className={style.label}>
+            Email:
+            <input
+              className={style.input}
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div className={style.formGroup}>
+          <label className={style.label}>
+            Password:
+            <input
+              className={style.input}
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <button className={style.signupButton} type="submit">Register</button>
+        {error && <p className={style.errorMessage}>{error}</p>}
       </form>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../redux/auth/authSlice';
-// import style from './UserMenu.module.css';
+import style from './UserMenu.module.css';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -13,9 +13,9 @@ export const UserMenu = () => {
   };
 
   return isLoggedIn ? (
-    <div>
-      <span>{email}</span>
-      <button onClick={handleLogout}>
+    <div className={style.userMenu}>
+      <span className={style.userEmail}>{email}</span>
+      <button className={style.logoutButton} onClick={handleLogout}>
         Logout
       </button>
     </div>

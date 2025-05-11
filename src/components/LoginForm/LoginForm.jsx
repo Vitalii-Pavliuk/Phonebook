@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../../redux/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
-// import style from './LoginForm.module.css';
+import style from './LoginForm.module.css';
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -22,29 +22,35 @@ export const LoginForm = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className={style.loginForm}>
+      <h2 className={style.formTitle}>Login</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Login</button>
-        {error && <p>{error}</p>}
+        <div className={style.formGroup}>
+          <label className={style.label}>
+            Email:
+            <input
+              className={style.input}
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div className={style.formGroup}>
+          <label className={style.label}>
+            Password:
+            <input
+              className={style.input}
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <button className={style.loginButton} type="submit">Login</button>
+        {error && <p className={style.errorMessage}>{error}</p>}
       </form>
     </div>
   );
