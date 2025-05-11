@@ -25,33 +25,34 @@ export const LoginForm = () => {
     <div className={style.loginForm}>
       <h2 className={style.formTitle}>Login</h2>
       <form onSubmit={handleSubmit}>
-        <div className={style.formGroup}>
-          <label className={style.label}>
-            Email:
-            <input
-              className={style.input}
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <div className={style.formGroup}>
-          <label className={style.label}>
-            Password:
-            <input
-              className={style.input}
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <button className={style.loginButton} type="submit">Login</button>
-        {error && <p className={style.errorMessage}>{error}</p>}
-      </form>
+  <div className={style.formGroup}>
+    <label className={style.label} htmlFor="email">Email:</label>
+    <input
+      id="email"
+      className={style.input}
+      type="email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      required
+    />
+  </div>
+
+  <div className={style.formGroup}>
+    <label className={style.label} htmlFor="password">Password:</label>
+    <input
+      id="password"
+      className={style.input}
+      type="password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      required
+    />
+  </div>
+
+  <button className={style.loginButton} type="submit">Login</button>
+  {error && <p className={style.errorMessage}>{error}</p>}
+</form>
+
     </div>
   );
 };

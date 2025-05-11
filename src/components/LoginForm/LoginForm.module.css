@@ -55,6 +55,8 @@
     cursor: pointer;
     transition: all 0.3s;
     margin-top: 10px;
+    margin-left: auto;
+    width: 100%;
 }
 
 .loginButton:hover {
